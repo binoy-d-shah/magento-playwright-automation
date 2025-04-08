@@ -5,7 +5,6 @@ import { LoginPage } from '../pages/LoginPage';
 import { generateRandomUser } from '../utils/dataProvider';
 import { RegistrationPage } from '../pages/RegistrationPage';
 import { accountTestData } from '../utils/accountTestData';
-import { registrationTestData } from '../utils/registrationTestData';
 
 /**
  * @testSuite My Account Management

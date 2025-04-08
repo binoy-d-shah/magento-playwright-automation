@@ -10,7 +10,7 @@ import { generateRandomGuestUser, generateRandomUser } from '../utils/dataProvid
 
 test.describe('Product Search Tests', () => {
     let homePage, productSearchPage, productPage;
-    let cartPage, checkoutPage, registrationPage, loginPage;
+    let cartPage, checkoutPage, registrationPage;
 
     const guestUserData = generateRandomGuestUser();
     const randomUser = generateRandomUser();

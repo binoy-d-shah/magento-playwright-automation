@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { RegistrationPage } from '../pages/RegistrationPage';
 import { generateRandomUser } from '../utils/dataProvider';
-import { config } from '../utils/config';
 import { MyAccountPage } from '../pages/MyAccountPage';
 import { registrationTestData } from '../utils/registrationTestData';
 

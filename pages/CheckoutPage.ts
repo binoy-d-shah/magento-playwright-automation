@@ -1,5 +1,4 @@
 import { Locator, Page } from '@playwright/test';
-import { config } from '../utils/config';
 
 export class CheckoutPage {
 

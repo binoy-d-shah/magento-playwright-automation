@@ -22,7 +22,9 @@ export class HomePage {
         try { 
             if(await this.agreeButton.isVisible())
                 await this.agreeButton.click();
-        } catch {}
+        } catch {
+            console.log('Do nothing');
+        }
     }
 
     async navigateToLogin() {
