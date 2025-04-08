@@ -33,6 +33,7 @@ This project contains end-to-end automated tests for the [Magento Software Testi
 # Clone the repo
 git clone https://github.com/binoy-d-shah/magento-playwright-automation.git
 cd magento-playwright-automation
+```
 
 # Install dependencies
 npm install
