@@ -72,6 +72,19 @@ npx playwright test --headed
 npx playwright show-report
 ```
 
+### Linting Setup
+
+This project uses ESLint to ensure code quality and maintain coding standards.
+
+- **Install ESLint dependencies:** Already covered in npm install.
+- **Run ESLint:** You can run ESLint manually using the following command:
+
+```bash
+npx eslint . --ext .ts
+```
+
+- **Automatically Fix Linting Issues:** You can automatically fix linting issues on file save in VSCode by enabling the eslint.autoFixOnSave setting in VSCode settings.
+
 ### Additional Resources
 
 - [Playwright Documentation](https://playwright.dev/)
