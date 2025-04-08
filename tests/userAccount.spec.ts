@@ -38,8 +38,11 @@ test.describe('User My Account Tests', () => {
      */
     test('User should be able to update first name and last name', async () => {
 
+        // Register the user
         await homePage.navigateToRegistration();
         await registrationPage.registerUser(randomUser.firstName, randomUser.lastName, randomUser.email, randomUser.password, randomUser.password);
+        
+        // Update first name and last name and verify it
         await myAccountPage.updateProfile(randomUser.firstName, randomUser.lastName);
         await expect(myAccountPage.getSuccessMessage()).resolves.toContain(accountTestData.successMessage);
     });
@@ -50,10 +53,15 @@ test.describe('User My Account Tests', () => {
      */
     test('User should be able to change password', async () => {
 
+        // Register the user
         await homePage.navigateToRegistration();
         await registrationPage.registerUser(randomUser.firstName, randomUser.lastName, randomUser.email, randomUser.password, randomUser.password);
+        
+        // Update the passwword
         await myAccountPage.changePassword(randomUser.password, accountTestData.newPassword, accountTestData.newPassword);
         await expect(myAccountPage.getSuccessMessage()).resolves.toContain(accountTestData.successMessage);
+        
+        // Login with updated password
         await loginPage.login(randomUser.email, accountTestData.newPassword);
         await expect(loginPage.isUserLoggedIn()).toBeTruthy(); 
         await loginPage.logout();
@@ -64,8 +72,12 @@ test.describe('User My Account Tests', () => {
      * @description Verifies that the user gets an error when trying to set a weak password.
      */
     test('User should get an error when trying to set a password with an incorrect format', async () => {
+        
+        // Register the user
         await homePage.navigateToRegistration();
         await registrationPage.registerUser(randomUser.firstName, randomUser.lastName, randomUser.email, randomUser.password, randomUser.password);
+        
+        // Try to change the password with invalid format and verify error message
         await myAccountPage.changePassword(randomUser.password, '123', '123');
         await expect(myAccountPage.getPasswordErrorMessage()).resolves.toContain(accountTestData.weakPasswordErrorMessage);
     });
@@ -75,8 +87,12 @@ test.describe('User My Account Tests', () => {
      * @description Verifies that the user receives an error when entering the wrong current password.
      */
     test('User should get an error when providing wrong current password', async () => {
+        
+        // Register the user
         await homePage.navigateToRegistration();
         await registrationPage.registerUser(randomUser.firstName, randomUser.lastName, randomUser.email, randomUser.password, randomUser.password);
+        
+        // Provide incorrect current password and verify error message
         await myAccountPage.changePassword(accountTestData.wrongPassword, randomUser.password, randomUser.password);
         await expect(myAccountPage.getErrorMessage()).resolves.toContain('The password doesn\'t match this account. Verify the password and try again.');
     });
@@ -86,8 +102,12 @@ test.describe('User My Account Tests', () => {
      * @description Verifies that the user gets an error when the new password and confirm password don't match.
      */
     test('User should get an error when new password and confirm new password doesn\'t match', async () => {
+        
+        // Register the user
         await homePage.navigateToRegistration();
         await registrationPage.registerUser(randomUser.firstName, randomUser.lastName, randomUser.email, randomUser.password, randomUser.password);
+        
+        // Provide same new and confirm new password and verify the error message
         await myAccountPage.changePassword(randomUser.password, randomUser.password, accountTestData.mismatchedPassword);
         await expect(myAccountPage.getPasswordConfirmationErrorMessage()).resolves.toContain(accountTestData.mistmatchedPasswordErrorMessage);
     });
@@ -97,9 +117,13 @@ test.describe('User My Account Tests', () => {
      * @description Verifies that the user gets an error when attempting to change their password to the same as the current password.
      */
     test('User should get an error when changing the password to the same as the current password', async () => {
+        
+        // Register the user
         await homePage.navigateToRegistration();
         await registrationPage.registerUser(randomUser.firstName, randomUser.lastName, randomUser.email, randomUser.password, randomUser.password);
-        await myAccountPage.changePassword(randomUser.password, randomUser.password, randomUser.password);
+        
+        // Try to change the password same as current password
+        myAccountPage.changePassword(randomUser.password, randomUser.password, randomUser.password);
         await expect(myAccountPage.getErrorMessage()).resolves.toContain(accountTestData.errorMessage);
     });
 

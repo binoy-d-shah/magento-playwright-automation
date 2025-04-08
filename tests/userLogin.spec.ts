@@ -23,7 +23,7 @@ test.describe('User Login Tests', () => {
         homePage = new HomePage(page);
         registrationPage = new RegistrationPage(page);
         
-        // Navigate to Login Page
+        // Register a new user
         await homePage.navigate();
         await homePage.navigateToRegistration();
         await registrationPage.registerUser(randomUser.firstName, randomUser.lastName, randomUser.email, randomUser.password, randomUser.password);
@@ -36,6 +36,7 @@ test.describe('User Login Tests', () => {
      * @description Logs in a registered user with valid credentials and verifies success, then performs logout.
      */
     test('Login with valid credentials and logout', async () => {
+        // Login and logout
         await loginPage.login(randomUser.email, randomUser.password);
         await expect(loginPage.isUserLoggedIn()).toBeTruthy();
         await loginPage.logout();

@@ -42,19 +42,26 @@ test.describe('Product Search Tests', () => {
      */
     test('Checkout flow as guest user', async () => {
 
+        // Search for the product and click on very first product from search results
         await homePage.searchForProduct(productsTestData.product1.name);
         await productSearchPage.clickOnFirstProduct();
 
+        // Add product to the cart and go to view cart
         await productPage.addToCart();
         await productPage.goToCart();
 
+        // Apply discount and verify it
         await cartPage.applyDiscountCode(productsTestData.couponCode);
         await expect(cartPage.getDiscountSuccessMessage()).resolves.toContain(productsTestData.couponCodeSuccessMessage);
 
+        // Proceed to checkout
         await cartPage.proceedToCheckout();
+
+        // Enter shipping address and other details and select shipping method
         await checkoutPage.fillGuestShippingDetails(guestUserData, 'guest');
         await checkoutPage.selectShippingMethod();
 
+        // Verify subtotal, grandtotal, discount and shipping cost
         const subTotal = await checkoutPage.getSubtotal();
         const discount = await checkoutPage.getDiscountAmount();
         const shippingCost = await checkoutPage.getShippingAmount();
@@ -63,8 +70,8 @@ test.describe('Product Search Tests', () => {
         await expect(discount).toBe((productsTestData.product1.price * 20) / 100);
         await expect(grandTotal).toBe(subTotal + shippingCost - discount);
 
+        // Place the final order and verify the success message
         await checkoutPage.placeOrder();
-
         await expect(checkoutPage.getOrderConfirmationMessage()).resolves.toContain(productsTestData.checkoutSuccessMessage);
     });
 
@@ -80,28 +87,35 @@ test.describe('Product Search Tests', () => {
      */
     test('Checkout flow as guest user withh multiple products', async () => {
 
+        // Search for the product and click on very first product from search results and add it to cart
         await homePage.searchForProduct(productsTestData.product1.name);
         await productSearchPage.clickOnFirstProduct();
-
         await productPage.addToCart();
 
+        // Search for the product and click on very first product from search results and add it to cart
         await homePage.searchForProduct(productsTestData.product2.name);
         await productSearchPage.clickOnFirstProduct();
-
         await productPage.addToCart();
 
+        // View cart
         await productPage.goToCart();
 
+        // Update quantity and verify it
         await cartPage.updateQuantity(productsTestData.product1.quantity);
         await expect(cartPage.getTotalQuantity()).resolves.toBe(productsTestData.product1.quantity);
 
+        // Apply discount and verify it
         await cartPage.applyDiscountCode(productsTestData.couponCode);
         await expect(cartPage.getDiscountSuccessMessage()).resolves.toContain(productsTestData.couponCodeSuccessMessage);
 
+        // Proceed to checkout
         await cartPage.proceedToCheckout();
+
+        // Enter shipping address and other details and select shipping method
         await checkoutPage.fillGuestShippingDetails(guestUserData, 'guest');
         await checkoutPage.selectShippingMethod();
 
+        // Verify subtotal, grandtotal, discount and shipping cost
         const subTotal = await checkoutPage.getSubtotal();
         const discount = await checkoutPage.getDiscountAmount();
         const shippingCost = await checkoutPage.getShippingAmount();
@@ -110,8 +124,8 @@ test.describe('Product Search Tests', () => {
         await expect(subTotal).toBe((productsTestData.product1.price * productsTestData.product1.quantity) + (productsTestData.product2.price * productsTestData.product2.quantity));
         await expect(grandTotal).toBe(subTotal + shippingCost - discount);
 
+        // Place the final order and verify the success message
         await checkoutPage.placeOrder();
-
         await expect(checkoutPage.getOrderConfirmationMessage()).resolves.toContain(productsTestData.checkoutSuccessMessage);
     });
 
@@ -126,22 +140,30 @@ test.describe('Product Search Tests', () => {
      */
     test('Checkout flow as logged-in user', async () => {
 
+        // Register a new user and login
         homePage.navigateToRegistration();
         await registrationPage.registerUser(randomUser.firstName, randomUser.lastName, randomUser.email, randomUser.password, randomUser.password);
 
+        // Search for the product and click on very first product from search results and add it to cart
         await homePage.searchForProduct(productsTestData.product1.name);
         await productSearchPage.clickOnFirstProduct();
-
         await productPage.addToCart();
+
+        // View cart
         await productPage.goToCart();
 
+        // Update quantity and verify it
         await cartPage.updateQuantity(productsTestData.product1.quantity);
         await expect(cartPage.getTotalQuantity()).resolves.toBe(productsTestData.product1.quantity);
 
+        // Proceed to checkout
         await cartPage.proceedToCheckout();
+       
+        // Enter shipping address and other details and select shipping method
         await checkoutPage.fillGuestShippingDetails(guestUserData, '');
         await checkoutPage.selectShippingMethod();
 
+        // Verify subtotal, grandtotal, discount and shipping cost
         const subTotal = await checkoutPage.getSubtotal();
         const shippingCost = await checkoutPage.getShippingAmount();
         const grandTotal = await checkoutPage.getGrandTotal();
@@ -149,8 +171,8 @@ test.describe('Product Search Tests', () => {
         await expect(subTotal).toBe(productsTestData.product1.price * productsTestData.product1.quantity);
         await expect(grandTotal).toBe(subTotal + shippingCost);
 
+        // Place the final order and verify the success message
         await checkoutPage.placeOrder();
-
         await expect(checkoutPage.getOrderConfirmationMessage()).resolves.toContain(productsTestData.checkoutSuccessMessage);
     });
 });
