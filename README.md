@@ -51,21 +51,22 @@ This will install:
 
 You can run the Playwright tests using the following command:
 
+- **Run Specific Test (Recommended)**:
+
+```bash
+npx playwright test tests/checkoutFlow.spec.ts --workers=3
+```
+
 - **Run All Tests**:
 
 ```bash
 npx playwright test --workers=3
 ```
 
-- **Run Specific Test**:
-
-```bash
-npx playwright test tests/checkoutFlow.spec.ts
-```
 - **Headed mode (UI)**:
 
 ```bash
-npx playwright test --headed
+npx playwright test --headed --workers=3
 ```
 
 - **Generate HTML report**:
