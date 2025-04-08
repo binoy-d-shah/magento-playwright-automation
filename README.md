@@ -35,8 +35,10 @@ git clone https://github.com/binoy-d-shah/magento-playwright-automation.git
 cd magento-playwright-automation
 ```
 
-# Install dependencies
+### Install dependencies
+```bash
 npm install
+```
 
 This will install:
 - Playwright for browser automation
@@ -47,11 +49,11 @@ This will install:
 
 You can run the Playwright tests using the following command:
 
+- **Run All Tests**:
+
 ```bash
 npx playwright test --workers=3
 ```
-
-This will execute all the test cases in the project.
 
 - **Run Specific Test**:
 
