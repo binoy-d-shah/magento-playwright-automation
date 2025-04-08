@@ -1,10 +1,10 @@
-# 🧪 Magento E-commerce Automation (Playwright + TypeScript)
+# Magento E-commerce Automation (Playwright + TypeScript)
 
 This project contains end-to-end automated tests for the [Magento Software Testing Board](https://magento.softwaretestingboard.com) website using **Playwright** and **TypeScript**. It covers core e-commerce functionalities such as product search, sorting, cart management, discount application, checkout (guest and logged-in), and order verification.
 
 ---
 
-## ✅ Features Covered
+## Features Covered
 
 - Product search using valid/invalid keywords
 - Sorting by price and name (ascending/descending)
