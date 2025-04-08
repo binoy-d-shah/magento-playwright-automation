@@ -20,7 +20,7 @@ This project contains end-to-end automated tests for the [Magento Software Testi
 
 ---
 
-## 🔧 Setup Instructions
+## Setup Instructions
 
 ### Prerequisites
 
