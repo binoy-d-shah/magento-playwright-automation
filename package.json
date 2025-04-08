@@ -1,0 +1,24 @@
+{
+  "name": "magento-playwright-automation",
+  "version": "1.0.0",
+  "description": "Playwright automation framework for Magento Software Testing Board website.",
+  "main": "index.js",
+  "devDependencies": {
+    "@faker-js/faker": "^9.6.0",
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.14.0",
+    "playwright": "^1.51.1"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binoy-d-shah/magento-playwright-automation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/binoy-d-shah/magento-playwright-automation/issues"
+  },
+  "homepage": "https://github.com/binoy-d-shah/magento-playwright-automation#readme"
+}
