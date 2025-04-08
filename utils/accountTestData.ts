@@ -1,9 +1,5 @@
 export const accountTestData = {
 
-    validUser: {
-        email: 'john.doe@mailinator.com',
-        password: 'Password123#'
-    },
     newPassword: 'NewPassword123#',
     wrongPassword: 'WrongPassword123#',
     mismatchedPassword: 'Mismatched123#',
