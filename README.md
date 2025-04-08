@@ -45,6 +45,8 @@ This will install:
 - Faker.js for generating random data
 - Other utilities like `@playwright/test`, `@types/node`, etc.
 
+---
+
 ### Run Tests
 
 You can run the Playwright tests using the following command:
@@ -72,6 +74,8 @@ npx playwright test --headed
 npx playwright show-report
 ```
 
+---
+
 ### Linting Setup
 
 This project uses ESLint to ensure code quality and maintain coding standards.
@@ -84,6 +88,8 @@ npx eslint . --ext .ts
 ```
 
 - **Automatically Fix Linting Issues:** You can automatically fix linting issues on file save in VSCode by enabling the eslint.autoFixOnSave setting in VSCode settings.
+
+---
 
 ### Additional Resources
 
