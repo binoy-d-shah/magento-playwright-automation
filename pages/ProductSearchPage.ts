@@ -34,33 +34,27 @@ export class ProductSearchPage {
     }
 
     async sortBy(criteria: 'Price' | string, order): Promise<void> {
-        
-        // First, choose the sort field from dropdown
         await this.page.waitForTimeout(3000);
         await this.sortDropdown.selectOption(criteria.toLowerCase());
-
-        // Wait for page content to refresh
         await this.page.waitForTimeout(3000);
 
-        // Then click appropriate sort direction button
         if (order === 'asc') {
             await this.sortAscButton.click();
         } else if (order === 'desc'){
             await this.sortDescButton.click();
         }
 
-        // Wait for page content to refresh
         await this.page.waitForTimeout(3000);
     }
 
     async getProductPrices(): Promise<number[]> {
         const prices = await this.productPrices.allInnerTexts();
-        return prices.map(p => parseFloat(p.replace(/[^\d.]/g, ''))); // Strip currency symbol and convert
+        return prices.map(p => parseFloat(p.replace(/[^\d.]/g, '')));
     }
 
     async getProductNames(): Promise<string[]> {
         const names = await this.productNames.allInnerTexts();
-        return names.map(p => p.trim()); // Trim string
+        return names.map(p => p.trim());
     }
 
     async clickOnFirstProduct(): Promise<void> {

@@ -11,7 +11,7 @@ export class HomePage {
     constructor(page: Page) {
         this.page = page;
         this.signInLink = page.locator('//a[contains(text(),"Sign In"]');
-        this.createAccountLink = page.locator('//a[text()="Create an Account"]');
+        this.createAccountLink = page.locator('//a[text()="Create an Account"]').first();
         this.agreeButton = page.locator('button[id="accept-btn"]');
         this.searchField = page.locator('#search');
     }
@@ -30,7 +30,7 @@ export class HomePage {
     }
 
     async navigateToRegistration() {
-        await this.createAccountLink.first().click();
+        await this.createAccountLink.click();
     }
 
     async navigateToMyAccountPage() {
